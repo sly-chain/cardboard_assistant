@@ -11,6 +11,7 @@ import aiy.audio
 import aiy.cloudspeech
 
 
+
 sys.path.append(os.path.realpath(os.path.join(__file__, '..', '..')) + '/src/')
 print(os.path)
 
