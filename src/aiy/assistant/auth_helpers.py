@@ -83,6 +83,7 @@ def _save_credentials(credentials_path, credentials):
             'refresh_token': credentials.refresh_token,
             'token_uri': credentials.token_uri,
             'client_id': credentials.client_id,
+            'device_model_id': credentials.device_model_id,
             'client_secret': credentials.client_secret,
             'scopes': credentials.scopes
         }, f)
