@@ -53,7 +53,6 @@ def _load_credentials(credentials_path):
             migrate = True
             del credentials_data['access_token']
             credentials_data['scopes'] = [_ASSISTANT_OAUTH_SCOPE]
-            credentials_data['device_model_id'] = [_ASSISTANT_DEVICE_MODEL]
     if migrate:
         with open(credentials_path, 'w') as f:
             json.dump(credentials_data, f)
@@ -67,8 +66,7 @@ def _load_credentials(credentials_path):
 def _credentials_flow_interactive(client_secrets_path):
     flow = google_auth_oauthlib.flow.InstalledAppFlow.from_client_secrets_file(
         client_secrets_path,
-        scopes = [_ASSISTANT_OAUTH_SCOPE],
-        device_model_id = [_ASSISTANT_DEVICE_MODEL])
+        scopes=[_ASSISTANT_OAUTH_SCOPE])
     if 'DISPLAY' in os.environ:
         credentials = flow.run_local_server()
     else:
@@ -84,7 +82,6 @@ def _save_credentials(credentials_path, credentials):
         json.dump({
             'refresh_token': credentials.refresh_token,
             'token_uri': credentials.token_uri,
-            'device_model_id': credentials.device_model_id,
             'client_id': credentials.client_id,
             'client_secret': credentials.client_secret,
             'scopes': credentials.scopes

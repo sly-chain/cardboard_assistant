@@ -16,6 +16,8 @@ import sys
 import threading
 import RPi.GPIO as GPIO
 
+import settings
+
 import aiy.assistant.auth_helpers
 import aiy.cloudspeech
 import aiy.voicehat
@@ -48,6 +50,7 @@ class MyAssistant(object):
         self._task = threading.Thread(target=self._run_task)
         self._can_start_conversation = False
         self._assistant = None
+        self._credentials_device_model_id = settings.DEVICE_MODEL_ID
 
     def start(self):
         """Starts the assistant.
@@ -58,7 +61,7 @@ class MyAssistant(object):
 
     def _run_task(self):
         credentials = aiy.assistant.auth_helpers.get_assistant_credentials()
-        with Assistant(credentials, credentials.device_model_id) as assistant:
+        with Assistant(credentials, self._credentials_device_model_id) as assistant:
             self._assistant = assistant
             for event in assistant.start():
                 self._process_event(event)

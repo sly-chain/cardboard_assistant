@@ -1,5 +1,6 @@
 assistant.json
 cloud_speech.json
+Settings.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
