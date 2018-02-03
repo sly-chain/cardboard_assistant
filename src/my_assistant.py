@@ -58,7 +58,7 @@ class MyAssistant(object):
 
     def _run_task(self):
         credentials = aiy.assistant.auth_helpers.get_assistant_credentials()
-        with Assistant(credentials) as assistant:
+        with Assistant(credentials, credentials.device_model_id) as assistant:
             self._assistant = assistant
             for event in assistant.start():
                 self._process_event(event)
